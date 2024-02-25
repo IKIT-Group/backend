@@ -1,13 +1,20 @@
 # Project Back-End
-<!-- [![Build](https://img.shields.io/github/actions/workflow/status/IKIT-Group/backend/build.yaml?logo=GitHub)](https://github.com/IKIT-Group/backend) -->
-[![Size](https://img.shields.io/github/languages/code-size/IKIT-Group/backend)](https://github.com/IKIT-Group/backend)
-[![License](https://img.shields.io/github/license/IKIT-Group/backend)](https://github.com/IKIT-Group/backend/blob/main/LICENSE)
-
 ## Tech Stack
-nest js
-<!-- ![Docker](https://img.shields.io/badge/-Docker-2496ED?logo=docker&logoColor=fff) -->
-<!-- ![PostgreSQL](https://img.shields.io/badge/-PostgreSQL-4169E1?logo=postgresql&logoColor=fff)\ -->
-<!-- ![Redis](https://img.shields.io/badge/-Redis-DC382D?logo=redis&logoColor=fff) -->
-<!-- ![NGINX](https://img.shields.io/badge/-NGINX-009639?logo=nginx&logoColor=fff) -->
-<!-- ![Certbot](https://img.shields.io/badge/-Certbot-003A70?logo=letsencrypt&logoColor=fff)\ -->
-<!-- ![JWT](https://img.shields.io/badge/-Json%20Web%20Tokens-000?logo=jsonwebtokens) -->
+![Docker](https://img.shields.io/badge/-Docker-2496ED?logo=docker&logoColor=fff)
+![PostgreSQL](https://img.shields.io/badge/-PostgreSQL-4169E1?logo=postgresql&logoColor=fff)\
+![TypeScript](https://img.shields.io/badge/-TypeScript-3178C6?logo=typescript&logoColor=fff)
+![NestJS](https://img.shields.io/badge/-NestJS-E0234E?logo=nestjs&logoColor=fff)
+![Prisma](https://img.shields.io/badge/-Prisma-2D3748?logo=prisma&logoColor=fff)\
+![Prettier](https://img.shields.io/badge/-Prettier-F7B93E?logo=prettier&logoColor=fff)
+![ESLint](https://img.shields.io/badge/-ESLint-4B32C3?logo=eslint&logoColor=fff)
+
+### Information
+Before installing, make sure you have following tools installed:\
+`git`, `node`, `npm`, `docker`, `docker-compose`, `@nestjs/cli`, `prisma`
+
+### Installation
+1. Clone this repo
+2. Setup `.env` file (check `.env.example`)
+3. Run docker compose (`docker compose up -d`)
+4. Run prisma migration (`npx prisma migrate dev --name init`)
+5. Start the server (`npm start`)
