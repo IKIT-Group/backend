@@ -1,16 +1,15 @@
 # Project Back-End
-## Tech Stack
-![Docker](https://img.shields.io/badge/-Docker-2496ED?logo=docker&logoColor=fff)
-![PostgreSQL](https://img.shields.io/badge/-PostgreSQL-4169E1?logo=postgresql&logoColor=fff)\
+### Tech Stack
 ![TypeScript](https://img.shields.io/badge/-TypeScript-3178C6?logo=typescript&logoColor=fff)
 ![NestJS](https://img.shields.io/badge/-NestJS-E0234E?logo=nestjs&logoColor=fff)
 ![Prisma](https://img.shields.io/badge/-Prisma-2D3748?logo=prisma&logoColor=fff)\
-![Prettier](https://img.shields.io/badge/-Prettier-F7B93E?logo=prettier&logoColor=fff)
-![ESLint](https://img.shields.io/badge/-ESLint-4B32C3?logo=eslint&logoColor=fff)
+![Docker](https://img.shields.io/badge/-Docker-2496ED?logo=docker&logoColor=fff)
+![PostgreSQL](https://img.shields.io/badge/-PostgreSQL-4169E1?logo=postgresql&logoColor=fff)
 
 ### Information
 Before installing, make sure you have following tools installed:\
-`git`, `node`, `npm`, `docker`, `docker-compose`, `@nestjs/cli`, `prisma`
+`git`, `node`, `npm`, `docker`, `docker-compose`, `@nestjs/cli`, `prisma`\
+We have swagger documentation, it is located on `/swagger` route
 
 ### Installation
 1. Clone this repo
