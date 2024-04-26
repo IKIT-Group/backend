@@ -14,6 +14,16 @@ enum Health {
     disabled = 'disabled',
 }
 
+const ToBoolean = () => Transform(({ obj, key }) => {
+    const value = obj[key];
+    if (typeof value === 'boolean') return value;
+    if (typeof value === 'string') {
+        if (['true', 'on', '1'].includes(value.toLowerCase())) return true;
+        if (['false', 'off', '0'].includes(value.toLowerCase())) return false;
+    }
+    return undefined;
+})
+
 export class Pet {
     @ApiProperty({ format: 'uuid' })
     id: string;
@@ -74,14 +84,17 @@ export class SearchPetDto {
     type: string;
 
     @ApiProperty()
+    @ToBoolean()
     @IsOptional()
     gender: boolean;
 
     @ApiProperty()
+    @ToBoolean()
     @IsOptional()
     sterilized: boolean;
 
     @ApiProperty()
+    @ToBoolean()
     @IsOptional()
     hasPassport: boolean;
 
