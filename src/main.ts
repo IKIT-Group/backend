@@ -10,6 +10,7 @@ async function bootstrap() {
     .setDescription('The pets API description')
     .setVersion('0.0.1')
     .addTag('pets')
+    .addTag('owners')
     .build();
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('swagger', app, document);

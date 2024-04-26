@@ -17,3 +17,5 @@ We have swagger documentation, it is located on `/swagger` route
 3. Run docker compose (`docker compose up -d`)
 4. Run prisma migration (`npx prisma migrate dev --name init`)
 5. Start the server (`npm start`)
+
+### Тут коты 🐈

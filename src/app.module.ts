@@ -1,5 +1,6 @@
 import { Logger, Module } from '@nestjs/common';
 import { PetsModule } from './pets/pets.module';
+import { OwnersModule } from './owners/owners.module';
 import { PrismaModule, loggingMiddleware } from 'nestjs-prisma';
 
 @Module({
@@ -15,7 +16,8 @@ import { PrismaModule, loggingMiddleware } from 'nestjs-prisma';
         ],
       },
     }),
-    PetsModule
+    PetsModule,
+    OwnersModule
   ],
   controllers: [],
   providers: [],

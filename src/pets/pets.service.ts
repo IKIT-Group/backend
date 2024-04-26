@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { Pet, CreatePetDto } from './pets.dto';
+import { Pet, CreatePetDto, SearchPetDto } from './pets.dto';
 import { PrismaService } from 'nestjs-prisma';
 
 @Injectable()
@@ -20,8 +20,19 @@ export class PetsService {
         }) as Promise<Pet>;
     }
 
-    async findAll(): Promise<Pet[]> {
-        return this.prismaService.pet.findMany() as Promise<Pet[]>;
+    async findAll(query: SearchPetDto): Promise<Pet[]> {
+        return this.prismaService.pet.findMany({
+            where: {
+                type: query.type,
+                gender: query.gender,
+                sterilized: query.sterilized,
+                hasPassport: query.hasPassport,
+                health: query.health,
+                dateOfBirth: {
+                    gte: query.bornAfter ? new Date(query.bornAfter) : query.bornAfter
+                }
+            }
+        }) as Promise<Pet[]>;
     }
 
     async remove(id: string): Promise<Pet> {
