@@ -5,6 +5,7 @@ import { ApiProperty } from '@nestjs/swagger';
 enum PetType {
     cat = 'cat',
     dog = 'dog',
+    hamster = 'hamster'
 }
 
 enum Health {
