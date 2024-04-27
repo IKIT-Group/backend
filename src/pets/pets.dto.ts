@@ -14,12 +14,51 @@ enum Health {
     disabled = 'disabled',
 }
 
+enum Age {
+    '6m' = '6m',
+    '7-12m' = '7-12m',
+    '1-5y' = '1-5y',
+    '6y' = '6y',
+}
+
 const ToBoolean = () => Transform(({ obj, key }) => {
     const value = obj[key];
     if (typeof value === 'boolean') return value;
     if (typeof value === 'string') {
         if (['true', 'on', '1'].includes(value.toLowerCase())) return true;
         if (['false', 'off', '0'].includes(value.toLowerCase())) return false;
+    }
+    return undefined;
+})
+
+const ToDate = () => Transform(({ obj, key }) => {
+    const value = obj[key];
+    if (typeof value === 'object') return value;
+    if (typeof value === 'string') {
+        if (value === '6m') {
+            let from = new Date();
+            from.setMonth(from.getMonth() - 6);
+            return [from, undefined]
+        };
+        if (value === '7-12m') {
+            let from = new Date();
+            from.setFullYear(from.getFullYear() - 1);
+            let to = new Date();
+            to.setMonth(to.getMonth() - 6);
+            return [from, to]
+        };
+        if (value === '1-5y') {
+            let from = new Date();
+            from.setFullYear(from.getFullYear() - 5);
+            let to = new Date();
+            to.setFullYear(to.getFullYear() - 1);
+            return [from, to];
+        }
+        if (value === '6y') {
+            let to = new Date();
+            to.setFullYear(to.getFullYear() - 6);
+            return [undefined, to];
+        }
     }
     return undefined;
 })
@@ -32,10 +71,16 @@ export class Pet {
     type: string;
 
     @ApiProperty()
-    gender: boolean;
+    name: string;
 
     @ApiProperty()
-    name: string;
+    description: string;
+
+    @ApiProperty()
+    image: string;
+
+    @ApiProperty()
+    gender: boolean;
 
     @ApiProperty()
     sterilized: boolean;
@@ -56,10 +101,16 @@ export class CreatePetDto {
     type: string;
 
     @ApiProperty({ required: true })
-    gender: boolean;
+    name: string;
+
+    @ApiProperty()
+    description: string;
+
+    @ApiProperty()
+    image: string;
 
     @ApiProperty({ required: true })
-    name: string;
+    gender: boolean;
 
     @ApiProperty({ required: true })
     sterilized: boolean;
@@ -78,6 +129,10 @@ export class CreatePetDto {
 }
 
 export class SearchPetDto {
+    @ApiProperty()
+    @IsOptional()
+    name: string;
+
     @ApiProperty({ enum: PetType })
     @IsEnum(PetType)
     @IsOptional()
@@ -103,9 +158,8 @@ export class SearchPetDto {
     @IsOptional()
     health: string;
 
-    @ApiProperty({ format: 'date' })
-    @IsDate()
-    @Transform(({ value } : { value: string }) => new Date(value))
+    @ApiProperty({ enum: Age })
+    @ToDate()
     @IsOptional()
-    bornAfter: Date;
+    age: [Date, Date];
 }

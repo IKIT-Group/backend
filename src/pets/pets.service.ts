@@ -23,13 +23,18 @@ export class PetsService {
     async findAll(query: SearchPetDto): Promise<Pet[]> {
         return this.prismaService.pet.findMany({
             where: {
+                name: {
+                    contains: query.name || '',
+                    mode: 'insensitive'
+                },
                 type: query.type,
                 gender: query.gender,
                 sterilized: query.sterilized,
                 hasPassport: query.hasPassport,
                 health: query.health,
                 dateOfBirth: {
-                    gte: query.bornAfter ? new Date(query.bornAfter) : query.bornAfter
+                    gte: query.age?.[0],
+                    lte: query.age?.[1],
                 }
             }
         }) as Promise<Pet[]>;
