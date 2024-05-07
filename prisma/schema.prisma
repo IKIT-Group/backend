@@ -12,7 +12,7 @@ model Pet {
   type        String
   name        String
   description String   @default("")
-  image       String   @default("fallback.png")
+  image       String   @default("pet-fallback.png")
   gender      Boolean
   sterilized  Boolean
   hasPassport Boolean
@@ -35,4 +35,13 @@ model Owner {
   hasPets     String
   selfWalking Boolean
   canPay      Boolean
+}
+
+model Product {
+  id       String   @id @default(uuid()) @db.Uuid
+  type     String
+  name     String
+  image    String   @default("product-fallback.png")
+  price    Float
+  oldPrice Float?
 }

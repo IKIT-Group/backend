@@ -8,7 +8,6 @@ USER node
 WORKDIR /usr/src/app
 
 COPY package*.json .
-COPY .env .
 RUN npm ci
 
 COPY --chown=node:node . .
@@ -28,10 +27,10 @@ USER node
 WORKDIR /usr/src/app
 
 COPY --from=builder --chown=node:node /usr/src/app/package*.json .
-COPY --from=builder --chown=node:node /usr/src/app/.env .
 COPY --from=builder --chown=node:node /usr/src/app/node_modules ./node_modules
 COPY --from=builder --chown=node:node /usr/src/app/dist ./dist
+COPY --chown=node:node ./public ./public
 
-EXPOSE 3000
+EXPOSE 8080
 
 CMD ["node", "dist/main"]
