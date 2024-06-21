@@ -25,8 +25,8 @@ model Owner {
   id          String  @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   name        String
   age         Int
-  phone       String  @unique
-  email       String  @unique
+  phone       String
+  email       String
   activity    String
   petId       String  @db.Uuid
   pet         Pet     @relation(fields: [petId], references: [id])
@@ -38,10 +38,27 @@ model Owner {
 }
 
 model Product {
-  id       String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  type     String
-  name     String
-  image    String   @default("product-fallback.png")
-  price    Float
-  oldPrice Float?
+  id         String  @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  type       String
+  name       String
+  image      String  @default("product-fallback.png")
+  price      Float
+  oldPrice   Float?
+  orderItems OrderItem[]
+}
+
+model Order {
+  id       String  @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  phone    String
+  email    String
+  items    OrderItem[]
+}
+
+model OrderItem {
+  id        String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  orderId   String   @db.Uuid
+  order     Order    @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  productId String   @db.Uuid
+  product   Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
+  quantity  Int
 }

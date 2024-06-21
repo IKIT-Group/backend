@@ -2,6 +2,7 @@ import { Logger, Module } from '@nestjs/common';
 import { PetsModule } from './pets/pets.module';
 import { OwnersModule } from './owners/owners.module';
 import { ProductsModule } from './products/products.module';
+import { OrdersModule } from './orders/orders.module';
 import { PrismaModule, loggingMiddleware } from 'nestjs-prisma';
 import { ServeStaticModule } from '@nestjs/serve-static';
 import { join } from 'path';
@@ -25,7 +26,8 @@ import { join } from 'path';
     }),
     PetsModule,
     OwnersModule,
-    ProductsModule
+    ProductsModule,
+    OrdersModule
   ],
   controllers: [],
   providers: [],
