@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { Order, CreateOrderDto } from './orders.dto';
 import { PrismaService } from 'nestjs-prisma';
+import { sendEmail } from '../email';
 
 @Injectable()
 export class OrderService {
@@ -11,9 +12,6 @@ export class OrderService {
             const createdOrder = await prisma.order.create({
                 data: {
                     email: order.email
-                },
-                select: {
-                    id: true
                 }
             });
             await prisma.orderItem.createMany({
@@ -22,6 +20,10 @@ export class OrderService {
                     productId,
                     quantity: order.cart[productId]
                 }))
+            });
+            await sendEmail({
+                ...order,
+                id: createdOrder.id
             });
             return {
                 ...order,
