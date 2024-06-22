@@ -10,7 +10,6 @@ export class OrderService {
         const transaction = await this.prismaService.$transaction(async prisma => {
             const createdOrder = await prisma.order.create({
                 data: {
-                    phone: order.phone,
                     email: order.email
                 },
                 select: {
@@ -40,7 +39,7 @@ export class OrderService {
             include: {
                 items: true
             }
-        }); 
+        });
         return {
             ...order,
             items: undefined,
@@ -94,7 +93,6 @@ export class OrderService {
                     id: id
                 },
                 data: {
-                    phone: order.phone,
                     email: order.email
                 }
             });
@@ -118,13 +116,13 @@ export class OrderService {
                     });
                 }
             }
-            
+
             const updatedOrderItems = await prisma.orderItem.findMany({
                 where: {
                     orderId: id
                 }
             });
-            
+
             return {
                 ...updatedOrder,
                 cart: updatedOrderItems.reduce((acc, item) => {

@@ -1,4 +1,4 @@
-import { IsPhoneNumber, IsEmail, registerDecorator, IsObject, ValidationOptions, ValidationArguments } from 'class-validator';
+import { IsEmail, registerDecorator, ValidationOptions, ValidationArguments } from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';
 
 export type Cart = {[id: string]: number};
@@ -31,9 +31,6 @@ export class Order {
     @ApiProperty({ format: 'uuid' })
     id: string;
 
-    @ApiProperty({ format: 'phone', example: '+79136969696' })
-    phone: string;
-
     @ApiProperty({ format: 'email', example: 'user@mail.com' })
     email: string;
 
@@ -42,10 +39,6 @@ export class Order {
 }
 
 export class CreateOrderDto {
-    @ApiProperty({ required: true })
-    @IsPhoneNumber()
-    phone: string;
-
     @ApiProperty({ required: true })
     @IsEmail()
     email: string;
